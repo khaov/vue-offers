@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import type { OfferItem } from '@/types'
+import UiButton from '@/components/ui/UiButton.vue'
 
 const props = defineProps<{
   offer: OfferItem
 }>()
 
-function formatSum(sum) {
+function formatSum(sum: number) {
   return sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 }
 
-function formatPeriod(period) {
+function formatPeriod(period: OfferItem['percent']['type']) {
   const periods = {
     day: 'в день',
     week: 'в неделю',
@@ -37,7 +38,9 @@ function formatPeriod(period) {
           <li>за {{ offer.time_to_get }}</li>
         </ul>
       </div>
-      <div class="offer-footer"></div>
+      <div class="offer-footer">
+        <UiButton :color="'primary'" :size="'lg'" type="button">Получить деньги</UiButton>
+      </div>
     </div>
   </a>
 </template>
